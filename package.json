@@ -1,0 +1,29 @@
+{
+  "name": "Forum-API",
+  "version": "1.0.0",
+  "description": "A simple Forum API built with Node JS",
+  "main": "app.js",
+  "scripts": {
+    "start:server": "cross-env NODE_ENV=development nodemon --exec babel-node server/app ",
+    "start:prod": "cross-env NODE_ENV=production @babel/node server/app",
+    "test:server": "cross-env NODE_ENV=test yarn run reset-migrate && cross-env NODE_ENV=test nyc mocha server/test/**/*.js --timeout 10000 --exit --require @babel/register  --reporter spec"
+  },
+  "repository": "git@github.com:Ijebusoma/Forum-API.git",
+  "author": "Vanessa Osuka",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/cli": "^7.6.2",
+    "@babel/core": "^7.6.2",
+    "@babel/node": "^7.6.2",
+    "@babel/preset-env": "^7.6.2",
+    "@babel/register": "^7.6.2",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "cross-env": "^6.0.0",
+    "dotenv": "^8.1.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.2"
+  }
+}
