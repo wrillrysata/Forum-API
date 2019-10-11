@@ -34,7 +34,7 @@ module.exports = (sequelize, DataTypes) => {
     bcrypt.compareSync(reqPassword, user.password)
   );
 
-  User.beforeCreate(user => (
+  User.beforeCreate((user) => (
     user.password && user.hashPassword(user)
   ));
 
