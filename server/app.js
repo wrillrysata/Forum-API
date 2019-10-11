@@ -19,10 +19,7 @@ app.get('/', (req, res) => {
   res.status(200).send('Welcome to the Forum API');
 });
 
-app.use('*', (req, res) =>
-  res.send({
-    message: 'The API route you requested does not exist',
-  })
-);
+app.use('*', (req, res) => res.send({ message: 'The API route you requested does not exist', }));
+// eslint-disable-next-line no-console
 app.listen(port, () => console.log(`Forum API listening on port ${port}`));
 export default app;
