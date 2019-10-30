@@ -1,29 +1,29 @@
 module.exports = (sequelize, DataTypes) => {
   const Comment = sequelize.define('Comment', {
-    comment:{
-      type:DataTypes.TEXT,
-      allowNull:false
+    comment: {
+      type: DataTypes.TEXT,
+      allowNull: false
     },
-    postId:{
-      type:DataTypes.UUID,
+    postId: {
+      type: DataTypes.UUID,
       onDelete: 'CASCADE',
-        references: {
-          model: 'Post',
-          key: 'id',
-          as: 'postId',
-        },
+      references: {
+        model: 'Post',
+        key: 'id',
+        as: 'postId',
       },
+    },
     parent: {
       type: DataTypes.UUID,
-      allowNull:false
+      allowNull: false
     },
-  },
-  Comment.associate = function(models) {
-    Comment.BelongsTo(models.Post, {
+  });
+  Comment.associate = function (models) {
+    Comment.belongsTo(models.Post, {
       foreignKey: 'postId',
       onDelete: 'CASCADE',
     });
     // associations can be defined here
-  });
+  };
   return Comment;
 };
