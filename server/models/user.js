@@ -8,23 +8,22 @@ module.exports = (sequelize, DataTypes) => {
     },
     email: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
       unique: true,
     },
     password: {
       type: DataTypes.STRING,
+      allowNull: true
+    },
+    token: {
+      type: DataTypes.TEXT,
       allowNull: false,
     },
   });
 
-  User.lookupEmail = async (email) => {
-    const user = await User.findOne({ where: { email } });
-
-    if (!user) {
-      return Promise.resolve('Email has not been used');
-    }
-
-    return Promise.reject(new Error('Email is already in use'));
+  User.lookupUser = async (username) => {
+    const user = await User.findOne({ where: { username } });
+    return user;
   };
   User.prototype.hashPassword = (user) => {
     user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(8));
